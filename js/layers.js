@@ -9,7 +9,7 @@ addLayer("px", {
     color: "#4BDC13",
     requires: new Decimal(24), // Can be a function that takes requirement increases into account
     resource: "pixel points", // Name of prestige currency
-    baseResource: "pixels", // Name of resource prestige is based on
+    baseResource: "bits", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Prestige currency exponent
