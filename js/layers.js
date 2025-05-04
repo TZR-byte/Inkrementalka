@@ -31,43 +31,43 @@ addLayer("px", {
     layerShown(){return true},
     upgrades: {
         11: {
-            title: "Make this whatever you want!",
-            description: "Double your point gain.",
+            title: "Double bit gain",
+            description: "Doubles your bit gain.",
             cost: new Decimal(1)
         },
         12: {
             title: "Double pixel point gain",
-            description: "Doubles your pixel point gain.",
+            description: "Double your pixel point gain.",
             cost: new Decimal(1)
         },
         13: {
-            title: "Make this whatever you want!",
-            description: "Double your point gain.",
+            title: "Double bit gain",
+            description: "Doubles your bit gain.",
             cost: new Decimal(1)
         },
         14: {
             title: "Double pixel point gain",
-            description: "Doubles your pixel point gain.",
+            description: "Double your pixel point gain.",
             cost: new Decimal(1)
         },
         21: {
-            title: "Make this whatever you want!",
-            description: "Double your point gain.",
+            title: "Double bit gain",
+            description: "Doubles your bit gain.",
             cost: new Decimal(1)
         },
         22: {
             title: "Double pixel point gain",
-            description: "Doubles your pixel point gain.",
+            description: "Double your pixel point gain.",
             cost: new Decimal(1)
         },
         23: {
-            title: "Make this whatever you want!",
-            description: "Double your point gain.",
+            title: "Double bit gain",
+            description: "Doubles your bit gain.",
             cost: new Decimal(1)
         },
         24: {
             title: "Double pixel point gain",
-            description: "Doubles your pixel point gain.",
+            description: "Double your pixel point gain.",
             cost: new Decimal(1)
         },
         15: {
@@ -98,6 +98,16 @@ addLayer("kpx", {
     baseAmount() { return player.px.points },
     type: "normal",
     exponent: 0.5,
+    
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        mult = new Decimal(1)
+        if (hasUpgrade("kpx", 12)) mult = mult.times(2)
+        if (hasUpgrade("kpx", 14)) mult = mult.times(2)
+        if (hasUpgrade("kpx", 22)) mult = mult.times(2)
+        if (hasUpgrade("kpx", 24)) mult = mult.times(2)
+        if (hasUpgrade("kpx", 31)) mult = mult.times(10)
+        return mult
+    },
     row: 1,
     branches: ["px"],
     layerShown() { 
@@ -108,5 +118,95 @@ addLayer("kpx", {
         }
         return true;
     },
-    upgrades: {},
+    upgrades: {
+        11: {
+            title: "Double bit gain",
+            description: "Doubles your bit gain.",
+            cost: new Decimal(1)
+        },
+        12: {
+            title: "Double kilo pixel point gain",
+            description: "Doubles your pixel point gain.",
+            cost: new Decimal(1)
+        },
+        13: {
+            title: "Double bit gain",
+            description: "Doubles your bit gain.",
+            cost: new Decimal(1)
+        },
+        14: {
+            title: "Double kilo pixel point gain",
+            description: "Doubles your pixel point gain.",
+            cost: new Decimal(1)
+        },
+        15: {
+            title: "Double bit gain",
+            description: "Doubles your bit gain.",
+            cost: new Decimal(1)
+        },
+        21: {
+            title: "Double bit gain",
+            description: "Doubles your bit gain.",
+            cost: new Decimal(1)
+        },
+        22: {
+            title: "Double pixel point gain",
+            description: "Doubles your kilo pixel point gain.",
+            cost: new Decimal(1)
+        },
+        23: {
+            title: "Double bit gain",
+            description: "Doubles your bit gain.",
+            cost: new Decimal(1)
+        },
+        24: {
+            title: "Double pixel point gain",
+            description: "Doubles your kilo pixel point gain.",
+            cost: new Decimal(1)
+        },
+        25: {
+            title: "Double bit gain",
+            description: "Doubles your bit gain.",
+            cost: new Decimal(1)
+        },
+        31: {
+            title: "Log Boost",
+            description: "Boost pixel point gain by log10 of bits.",
+            cost: new Decimal(25)
+        }
+    },
+})
+
+addLayer("mpx", {
+    name: "mega pixels",
+    symbol: "MP",
+    position: 0,
+    startData() { return {
+        unlocked: false,
+        points: new Decimal(0),
+    }},
+    color: "#FF4500",
+    requires: new Decimal(1000),
+    resource: "megapixel points",
+    baseResource: "kilopixel points",
+    baseAmount() { return player.kpx.points },
+    type: "normal",
+    exponent: 0.5,
+    row: 2,
+    branches: ["kpx"],
+    layerShown() {
+        if (!player.kpx.unlocked) return false;
+        let upgrades = [11,12,13,14,15,21,22,23,24,25];
+        for (let id of upgrades) {
+            if (!hasUpgrade("px", id)) return false;
+        }
+        return true;
+    },
+    upgrades: {
+        55: {
+            title: "SCREENS",
+            description: "unlock something new",
+            cost: new Decimal(2)
+        }
+    },
 })
