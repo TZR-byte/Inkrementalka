@@ -84,7 +84,7 @@ addLayer("px", {
 })
 
 addLayer("kpx", {
-    name: "kilopixels",
+    name: "kilo pixels",
     symbol: "KP",
     position: 0,
     startData() { return {
