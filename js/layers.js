@@ -9,7 +9,7 @@ addLayer("px", {
     color: "#4BDC13",
     requires: new Decimal(24), // Can be a function that takes requirement increases into account
     resource: "pixel points", // Name of prestige currency
-    baseResource: "pxels", // Name of resource prestige is based on
+    baseResource: "pixels", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Prestige currency exponent
@@ -179,7 +179,7 @@ addLayer("kpx", {
 
 addLayer("mpx", {
     name: "mega pixels",
-    symbol: "MP",
+    symbol: "MPX",
     position: 0,
     startData() { return {
         unlocked: false,
@@ -198,7 +198,7 @@ addLayer("mpx", {
         if (!player.kpx.unlocked) return false;
         let upgrades = [11,12,13,14,15,21,22,23,24,25];
         for (let id of upgrades) {
-            if (!hasUpgrade("px", id)) return false;
+            if (!hasUpgrade("kpx", id)) return false;
         }
         return true;
     },
