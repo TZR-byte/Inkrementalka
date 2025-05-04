@@ -150,7 +150,7 @@ addLayer("kpx", {
             cost: new Decimal(1)
         },
         22: {
-            title: "Double pixel point gain",
+            title: "Double kilo pixel point gain",
             description: "Doubles your kilo pixel point gain.",
             cost: new Decimal(1)
         },
@@ -160,7 +160,7 @@ addLayer("kpx", {
             cost: new Decimal(1)
         },
         24: {
-            title: "Double pixel point gain",
+            title: "Double kilo pixel point gain",
             description: "Doubles your kilo pixel point gain.",
             cost: new Decimal(1)
         },
@@ -170,8 +170,8 @@ addLayer("kpx", {
             cost: new Decimal(1)
         },
         31: {
-            title: "Log Boost",
-            description: "Boost pixel point gain by log10 of bits.",
+            title: "Boost",
+            description: "Boost kilo pixel point gain",
             cost: new Decimal(25)
         }
     },
