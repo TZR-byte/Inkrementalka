@@ -1,7 +1,7 @@
 let modInfo = {
-	name: "Prototip Hrvoje Dragic ZavrsniRad",
-	author: "nobody",
-	pointsName: "points",
+	name: "Zavrsni rad",
+	author: "Hrvoje Dragic",
+	pointsName: "bits",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
@@ -42,6 +42,16 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
+	if (hasUpgrade('px', 11)) gain = gain.times(2)
+	if (hasUpgrade('px', 12)) gain = gain.times(2)
+	if (hasUpgrade('px', 13)) gain = gain.times(2)
+	if (hasUpgrade('px', 14)) gain = gain.times(2)
+	if (hasUpgrade('px', 21)) gain = gain.times(2)
+	if (hasUpgrade('px', 22)) gain = gain.times(2)
+	if (hasUpgrade('px', 23)) gain = gain.times(2)
+	if (hasUpgrade('px', 24)) gain = gain.times(2)
+	if (hasUpgrade('px', 15)) gain = gain.times(2)
+	if (hasUpgrade('px', 25)) gain = gain.times(2)
 	return gain
 }
 
