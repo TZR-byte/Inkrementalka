@@ -33,52 +33,52 @@ addLayer("px", {
         11: {
             title: "Double bit gain",
             description: "Doubles your bit gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(2)
         },
         12: {
             title: "Double pixel point gain",
             description: "Double your pixel point gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(3)
         },
         13: {
             title: "Double bit gain",
             description: "Doubles your bit gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(4)
         },
         14: {
             title: "Double pixel point gain",
             description: "Double your pixel point gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(9)
         },
         21: {
             title: "Double bit gain",
             description: "Doubles your bit gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(16)
         },
         22: {
             title: "Double pixel point gain",
             description: "Double your pixel point gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(27)
         },
         23: {
             title: "Double bit gain",
             description: "Doubles your bit gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(32)
         },
         24: {
             title: "Double pixel point gain",
             description: "Double your pixel point gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(81)
         },
         15: {
-            title: "Make this whatever you want!",
+            title: "Double bit gain",
             description: "Double your point gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(8)
         },
         25: {
-            title: "Make this whatever you want!",
+            title: "Double bit gain",
             description: "Double your point gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(64)
         }
     },
 })
@@ -122,57 +122,57 @@ addLayer("kpx", {
         11: {
             title: "Double bit gain",
             description: "Doubles your bit gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(2)
         },
         12: {
             title: "Double kilo pixel point gain",
             description: "Doubles your pixel point gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(3)
         },
         13: {
             title: "Double bit gain",
             description: "Doubles your bit gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(4)
         },
         14: {
             title: "Double kilo pixel point gain",
             description: "Doubles your pixel point gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(9)
         },
         15: {
             title: "Double bit gain",
             description: "Doubles your bit gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(8)
         },
         21: {
             title: "Double bit gain",
             description: "Doubles your bit gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(16)
         },
         22: {
             title: "Double kilo pixel point gain",
             description: "Doubles your kilo pixel point gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(27)
         },
         23: {
             title: "Double bit gain",
             description: "Doubles your bit gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(32)
         },
         24: {
             title: "Double kilo pixel point gain",
             description: "Doubles your kilo pixel point gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(81)
         },
         25: {
             title: "Double bit gain",
             description: "Doubles your bit gain.",
-            cost: new Decimal(1)
+            cost: new Decimal(64)
         },
         31: {
             title: "Boost",
             description: "Boost kilo pixel point gain",
-            cost: new Decimal(25)
+            cost: new Decimal(250)
         }
     },
 })
@@ -193,7 +193,6 @@ addLayer("mpx", {
     type: "normal",
     exponent: 0.5,
     row: 2,
-    branches: ["kpx"],
     layerShown() {
         if (!player.kpx.unlocked) return false;
         let upgrades = [11,12,13,14,15,21,22,23,24,25];
@@ -208,5 +207,34 @@ addLayer("mpx", {
             description: "unlock something new",
             cost: new Decimal(2)
         }
+    },
+})
+
+addLayer("Screen", {
+    name: "Screen",
+    symbol: "S",
+    position: 0,
+    startData() { return {
+        unlocked: false,
+        points: new Decimal(0),
+    }},
+    color: "#FF4500",
+    requires: new Decimal(1000),
+    resource: "bits",
+    baseResource: "bits",
+    baseAmount() { return player.mpx.points },
+    type: "normal",
+    exponent: 0.5,
+    row: 3,
+    branches: ["kpx"],
+    layerShown() {
+        if (!player.mpx.unlocked) return false;
+        let upgrades = [2];
+        for (let id of upgrades) {
+            if (!hasUpgrade("mpx", id)) return false;
+        }
+        return true;
+    },
+    upgrades: {
     },
 })
