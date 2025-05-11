@@ -195,7 +195,7 @@ addLayer("mpx", {
     row: 2,
     layerShown() {
         if (!player.kpx.unlocked) return false;
-        let upgrades = [11,12,13,14,15,21,22,23,24,25];
+        let upgrades = [11,12,13,14,15,21,22,23,24,25,31];
         for (let id of upgrades) {
             if (!hasUpgrade("kpx", id)) return false;
         }
@@ -226,10 +226,10 @@ addLayer("Screen", {
     type: "normal",
     exponent: 0.5,
     row: 3,
-    branches: ["kpx"],
+    branches: ["mpx"],
     layerShown() {
         if (!player.mpx.unlocked) return false;
-        let upgrades = [2];
+        let upgrades = [55];
         for (let id of upgrades) {
             if (!hasUpgrade("mpx", id)) return false;
         }
