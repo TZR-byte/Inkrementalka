@@ -58,6 +58,10 @@ function getPointGen() {
 
 	if (hasUpgrade('kpx', 31)) gain = gain.times(10)
 
+	if (hasUpgrade('Screen', 12)) gain = gain.times(2)
+	if (hasUpgrade('Screen', 13)) gain = gain.times(2)
+	if (hasUpgrade('Screen', 14)) gain = gain.times(2)
+
 	return gain
 }
 
