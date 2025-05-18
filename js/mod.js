@@ -62,6 +62,11 @@ function getPointGen() {
 	if (hasUpgrade('Screen', 13)) gain = gain.times(2)
 	if (hasUpgrade('Screen', 14)) gain = gain.times(2)
 
+	if (hasUpgrade('kb', 21)) gain = gain.times(4)
+
+	if (hasUpgrade('mib', 12)) gain = gain.times(2)
+	if (hasUpgrade('mb', 12)) gain = gain.times(2)
+	if (hasUpgrade('mib', 21)) gain = gain.times(4)
 	return gain
 }
 

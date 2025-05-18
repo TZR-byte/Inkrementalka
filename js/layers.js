@@ -246,6 +246,8 @@ addLayer("Screen", {
         mult = mult.times(buyableEffect("Screen", 11));
         if (hasUpgrade("Screen", 21)) mult = mult.times(2);
         if (hasUpgrade("Screen", 22)) mult = mult.times(2);
+        if (hasUpgrade("kib", 12)) mult = mult.times(3);
+        if (hasUpgrade("kb", 12)) mult = mult.times(3);
         return mult;
     },
     layerShown() {
@@ -267,14 +269,27 @@ addLayer("Screen", {
             effectDescription: "KiB and KB layers are not reset (5000000 bytes).",
             done() { return player.Screen.points.gte(5000000) },
         },
+        2: {
+            requirementDescription: "An old USB",
+            effectDescription: "MB and MiB layers are not reset (5120000000 bytes).",
+            done() { return player.Screen.points.gte(5120000000) },
+        },
+        3: {
+            requirementDescription: "A modern Hard Drive",
+            effectDescription: "GB, GiB, TB and TiB layers are not reset (1000000000000 bytes).",
+            done() { return player.Screen.points.gte(1000000000000) },
+        },
     },
     doReset(resettingLayer) {
         if (resettingLayer === this.layer) return; // Do not reset if resetting self
         if (hasMilestone("Screen", 0)) {
             player[this.layer].points = new Decimal(0);
             player.points = new Decimal(0);
+        } else if (hasMilestone("Screen", 2) && (resettingLayer === "mb" || resettingLayer === "mib")) {
+            return;
+        } else if (hasMilestone("Screen", 3) && (resettingLayer === "gb" || resettingLayer === "gib" || resettingLayer === "tb" || resettingLayer === "tib")) {
+            return;
         } else {
-            // Full reset of the layer
             layerDataReset(this.layer, []);
         }
     },
@@ -364,6 +379,11 @@ addLayer("kib", {
     layerShown() {
         return hasUpgrade("Screen", 11);
     },
+    gainMult() {
+        let mult = new Decimal(1);
+        if (hasUpgrade("kb", 11)) mult = mult.times(2);
+        return mult;
+    },
     doReset(resettingLayer) {
         if (resettingLayer === this.layer) return; // Do not reset if resetting self
         if (hasMilestone("Screen", 1)) {
@@ -373,6 +393,23 @@ addLayer("kib", {
         } else {
             // Full reset of the layer
             layerDataReset(this.layer, []);
+        }
+    },
+    upgrades: {
+        11: {
+            title: "Double kilobyte gain",
+            description: "Doubles your kilobyte point gain.",
+            cost: new Decimal(10)
+        },
+        12: {
+            title: "Triple byte gain",
+            description: "Triples your byte gain.",
+            cost: new Decimal(20)
+        },
+        21: {
+            title: "Quadruple bit gain speed",
+            description: "Quadruples your bit gain speed.",
+            cost: new Decimal(80)
         }
     },
 })
@@ -400,6 +437,11 @@ addLayer("kb", {
     layerShown() {
         return hasUpgrade("Screen", 11);
     },
+    gainMult() {
+        let mult = new Decimal(1);
+        if (hasUpgrade("kib", 11)) mult = mult.times(2);
+        return mult;
+    },
     doReset(resettingLayer) {
         if (resettingLayer === this.layer) return; // Do not reset if resetting self
         if (hasMilestone("Screen", 1)) {
@@ -409,6 +451,23 @@ addLayer("kb", {
         } else {
             // Full reset of the layer
             layerDataReset(this.layer, []);
+        }
+    },
+    upgrades: {
+        11: {
+            title: "Double kibibyte gain",
+            description: "Doubles your kibibyte point gain.",
+            cost: new Decimal(10)
+        },
+        12: {
+            title: "Triples byte gain",
+            description: "Triples your byte gain.",
+            cost: new Decimal(20)
+        },
+        21: {
+            title: "Quadruple bit gain speed",
+            description: "Quadruples your bit gain speed.",
+            cost: new Decimal(80)
         }
     },
 })
@@ -437,6 +496,21 @@ addLayer("mib", {
         return hasUpgrade("Screen", 11);
     },
     upgrades: {
+        11: {
+            title: "Double megabyte gain",
+            description: "Doubles your megabyte point gain.",
+            cost: new Decimal(10)
+        },
+        12: {
+            title: "Double bit gain speed",
+            description: "Doubles your bit gain speed.",
+            cost: new Decimal(20)
+        },
+        21: {
+            title: "Quadruple bit gain speed",
+            description: "Quadruples your bit gain speed.",
+            cost: new Decimal(40)
+        }
     },
 })
 
@@ -462,7 +536,27 @@ addLayer("mb", {
     layerShown() {
         return hasUpgrade("Screen", 11);
     },
+    gainMult() {
+        let mult = new Decimal(1);
+        if (hasUpgrade("mib", 11)) mult = mult.times(2);
+        return mult;
+    },
     upgrades: {
+        11: {
+            title: "Double mebibyte gain",
+            description: "Doubles your mebibyte point gain.",
+            cost: new Decimal(10)
+        },
+        12: {
+            title: "Double bit gain speed",
+            description: "Doubles your bit gain speed.",
+            cost: new Decimal(20)
+        },
+        21: {
+            title: "Triple mebibyte gain",
+            description: "Triples your mebibyte point gain.",
+            cost: new Decimal(40)
+        }
     },
 })
 
@@ -543,6 +637,11 @@ addLayer("tb", {
         return hasUpgrade("Screen", 11);
     },
     upgrades: {
+        11: {
+            title: "Upgrade 11",
+            description: "An upgrade for terabytes.",
+            cost: new Decimal(1)
+        }
     },
 })
 
@@ -570,6 +669,41 @@ addLayer("tib", {
         return hasUpgrade("Screen", 11);
     },
     upgrades: {
+        11: {
+            title: "Upgrade 11",
+            description: "An upgrade for tebibytes.",
+            cost: new Decimal(1)
+        }
     },
 })
 
+addLayer("computingPower", {
+    name: "Computing Power",
+    symbol: "CP",
+    position: 0,
+    startData() {
+        return {
+            unlocked: false,
+            points: new Decimal(0),
+        }
+    },
+    color: "#800080",
+    requires: new Decimal(1000),
+    resource: "bytes",
+    baseResource: "bytes",
+    baseAmount() { return player.Screen.points },
+    type: "normal",
+    exponent: 0.5,
+    row: 5,
+    branches: ["tb", "tib"],
+    layerShown() {
+        return player.tb.unlocked && player.tib.unlocked;
+    },
+    upgrades: {
+        11: {
+            title: "Computing Upgrade",
+            description: "An upgrade for computing power.",
+            cost: new Decimal(1)
+        }
+    }
+})
