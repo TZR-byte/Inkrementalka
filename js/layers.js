@@ -315,12 +315,12 @@ addLayer("Screen", {
             cost: new Decimal(512)
         },
         21: {
-            title: "Bitrush Mode",
+            title: "MegaByte Madness",
             description: "Doubles your byte gain.",
             cost: new Decimal(16)
         },
         22: {
-            title: "Lightspeed Bitstream",
+            title: "Byte Burst",
             description: "Doubles your byte gain.",
             cost: new Decimal(32)
         }
