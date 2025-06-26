@@ -37,52 +37,52 @@ addLayer("px", {
     },
     upgrades: {
         11: {
-            title: "Double bit gain",
+            title: "Bit Bang Theory",
             description: "Doubles your bit gain.",
             cost: new Decimal(2)
         },
         12: {
-            title: "Double pixel point gain",
+            title: "Pixel Potion",
             description: "Double your pixel point gain.",
             cost: new Decimal(3)
         },
         13: {
-            title: "Double bit gain",
+            title: "Bitstorm",
             description: "Doubles your bit gain.",
             cost: new Decimal(4)
         },
         14: {
-            title: "Double pixel point gain",
+            title: "8-Bit Energizer",
             description: "Double your pixel point gain.",
             cost: new Decimal(9)
         },
         21: {
-            title: "Double bit gain",
+            title: "Bit Buffet",
             description: "Doubles your bit gain.",
             cost: new Decimal(16)
         },
         22: {
-            title: "Double pixel point gain",
+            title: "Bitfinity and Beyond",
             description: "Double your pixel point gain.",
             cost: new Decimal(27)
         },
         23: {
-            title: "Double bit gain",
+            title: "Pixel Power-Up",
             description: "Doubles your bit gain.",
             cost: new Decimal(32)
         },
         24: {
-            title: "Double pixel point gain",
+            title: "Bit Booster Deluxe",
             description: "Double your pixel point gain.",
             cost: new Decimal(81)
         },
         15: {
-            title: "Double bit gain",
+            title: "Pixelator 9000",
             description: "Double your point gain.",
             cost: new Decimal(8)
         },
         25: {
-            title: "Double bit gain",
+            title: "Bitzilla",
             description: "Double your point gain.",
             cost: new Decimal(64)
         }
@@ -300,27 +300,27 @@ addLayer("Screen", {
             cost: new Decimal(1)
         },
         12: {
-            title: "Double bit gain speed",
+            title: "Overclocked Bits",
             description: "Doubles your bit gain speed.",
             cost: new Decimal(8)
         },
         13: {
-            title: "Double bit gain speed",
+            title: "Turbo Bits v2.0",
             description: "Doubles your bit gain speed.",
             cost: new Decimal(64)
         },
         14: {
-            title: "Double bit gain speed",
+            title: "Bit Accelerator",
             description: "Doubles your bit gain speed.",
             cost: new Decimal(512)
         },
         21: {
-            title: "Double byte gain I",
+            title: "Bitrush Mode",
             description: "Doubles your byte gain.",
             cost: new Decimal(16)
         },
         22: {
-            title: "Double byte gain II",
+            title: "Lightspeed Bitstream",
             description: "Doubles your byte gain.",
             cost: new Decimal(32)
         }
